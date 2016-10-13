@@ -280,8 +280,8 @@ def show_draw_result(title, results_df):
     ax.grid(b=True, which='minor', linewidth=.2)
     ax.grid(b=True, which='major', linewidth=1)
 
-    ax.plot(results_df["total_returns"], label="strategy", alpha=1, linewidth=2, color=red)
-    ax.plot(results_df["benchmark_total_returns"], label="benchmark", alpha=1, linewidth=2, color=blue)
+    ax.semilogy(1+results_df["total_returns"], label="strategy", alpha=1, linewidth=2, color=red, basey=2)
+    ax.semilogy(1+results_df["benchmark_total_returns"], label="benchmark", alpha=1, linewidth=2, color=blue, basey=2)
 
     # manipulate
     vals = ax.get_yticks()
