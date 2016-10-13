@@ -213,7 +213,7 @@ class StrategyExecutor(object):
             "volatility", "max_drawdown",
             "alpha", "beta", "sharpe",
             "information_rate", "downside_risk",
-            "tracking_error", "sortino",
+            "tracking_error", "sortino", "drawdown_time"
         ]
 
         data = []

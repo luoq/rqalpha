@@ -264,6 +264,7 @@ def show_draw_result(title, results_df):
         (0.40, label_height2, value_height2, "MaxDrawdown", "{0:.3%}".format(series.max_drawdown), black, black),
         (0.55, label_height2, value_height2, "Tracking Error", "{0:.4}".format(series.tracking_error), black, black),
         (0.70, label_height2, value_height2, "Downside Risk", "{0:.4}".format(series.downside_risk), black, black),
+        (0.85, label_height2, value_height2, "Drawdown Time", "{0:.3%}".format(series.drawdown_time), black, black)
     ]
 
     ax = plt.subplot(gs[:3, :-1])

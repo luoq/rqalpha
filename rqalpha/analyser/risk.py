@@ -27,6 +27,7 @@ class Risk(object):
         self.sharpe = .0
         self.sortino = .0
         self.information_rate = .0
+        self.drawdown_time = .0
         self.max_drawdown = .0
         self.tracking_error = .0
         self.downside_risk = .0

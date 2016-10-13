@@ -93,7 +93,7 @@ class RiskCal(object):
 
         risk = self.risk
         risk.volatility = self.cal_volatility()
-        risk.max_drawdown = self.cal_max_drawdown()
+        risk.drawdown_time, risk.max_drawdown = self.cal_drawdown_risk(risk.drawdown_time)
         risk.tracking_error = self.cal_tracking_error()
         risk.information_rate = self.cal_information_rate(risk.volatility)
         risk.downside_risk = self.cal_downside_risk()
@@ -111,12 +111,14 @@ class RiskCal(object):
         volatility = const.DAYS_CNT.TRADING_DAYS_A_YEAR ** 0.5 * np.std(daily_returns, ddof=1)
         return volatility
 
-    def cal_max_drawdown(self):
+    def cal_drawdown_risk(self, drawndown_ratio):
         today_return = self.strategy_current_total_returns[-1]
         today_drawdown = (1. + today_return) / (1. + self.current_max_returns) - 1.
         if today_drawdown < self.current_max_drawdown:
             self.current_max_drawdown = today_drawdown
-        return self.current_max_drawdown
+
+        current_drawdown_time = ((today_drawdown<0)+drawndown_ratio*(self.days_cnt-1))/self.days_cnt
+        return current_drawdown_time, self.current_max_drawdown
 
     def cal_tracking_error(self):
         diff = self.strategy_current_daily_returns - self.benchmark_current_daily_returns
